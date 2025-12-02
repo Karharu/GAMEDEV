@@ -19,7 +19,7 @@ public class Shop {
             int choice = safeIntRead(sc);
             switch(choice) {
                 case 1:
-                    if(p.spendGold(50)) { p.weaponDamage +=5; System.out.println("RUSTBORN FANG acquired!"); } else System.out.println("Not enough gold.");
+                    if(p.spendGold(50)) { p.weaponDamage +=5; System.out.println("KIANNE acquired!"); } else System.out.println("Not enough gold.");
                     break;
                 case 2:
                     if(p.spendGold(100)) { p.weaponDamage +=10; System.out.println("CONQUEROR'S BLADE acquired!"); } else System.out.println("Not enough gold.");
