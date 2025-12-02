@@ -12,7 +12,7 @@ public class Main {
         boolean picked = false;
         do {
             try {
-                typePrint("Choose yiour hero:\n1) Omen\n2) Timzkie\n3) Jade\nChoice: ");
+                typePrint("Choose your hero:\n1) Omen\n2) Timzkie\n3) Jade\nChoice: ");
                 int choice = sc.nextInt();
                 switch (choice) {
                     case 1: player = new Omen(); picked = true; break;
