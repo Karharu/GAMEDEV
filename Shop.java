@@ -39,7 +39,10 @@ public class Shop {
             if(shopping) {
                 System.out.print("Buy another item? 1=Yes 2=No: ");
                 int more = safeIntRead(sc);
-                if(more != 1) shopping = false;
+                if(more != 1){
+                    System.out.println("Exiting shop...");
+                    shopping = false;
+                }
             }
         }
     }
