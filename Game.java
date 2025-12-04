@@ -6,6 +6,8 @@ public class Game {
     private Random rand = new Random();
     private int winsSinceShop = 0;
     private int totalFights = 0;
+    private GameUI ui = new GameUI();
+
 
     public Game(Character player, Scanner sc) {
         this.player = player; this.sc = sc;
@@ -98,7 +100,11 @@ public class Game {
         int enemyHp = enemy.getHp();
         while(enemyHp>0) {
             storyPrint("-------------------------------");
-            storyPrint("Your Turn: HP:"+player.getHp()+" Mana:"+player.getMana()+" Gold:"+player.getCurrency());
+            storyPrint("HP:   " + ui.getHealthBar(player.getHp(), player.getMaxHp(), 20));
+            storyPrint("Mana: " + ui.getManaBar(player.getMana(), player.getMaxMana(), 20));
+            storyPrint("Gold: " + player.getCurrency());
+            storyPrint("Enemy HP: " + ui.getHealthBar(enemyHp, enemy.getMaxHp(), 20));
+
             System.out.println("0) Normal Attack (0 mana)");
             player.showSkills();
             System.out.println("4) Attempt to Run");
