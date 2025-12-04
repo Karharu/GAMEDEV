@@ -5,9 +5,14 @@ public class Shop {
         boolean shopping = true;
         Random rand = new Random();
         while (shopping) {
-            System.out.println("\n-------------------------------");
-            System.out.println("--- THE TRAVELER'S TENT ---");
-            System.out.println("Gold: " + p.getCurrency());
+            System.out.println("╔════════════════════════════════════════════╗");
+            System.out.println("║             THE TRAVELER'S TENT            ║");
+            System.out.println("╠════════════════════════════════════════════╣");
+            System.out.println("║ You have: " + p.getCurrency() + "G                                ║");
+            System.out.println("╚════════════════════════════════════════════╝");
+            System.out.println();
+            System.out.println("Items for Sale:");
+            System.out.println("──────────────────────────────────────────────");
             System.out.println("1) RUSTBORN FANG (50 gold)");
             System.out.println("2) CONQUEROR'S BLADE (100 gold)");
             System.out.println("3) KINGSBANE REAVER (200 gold)");

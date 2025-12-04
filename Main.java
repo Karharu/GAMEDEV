@@ -13,9 +13,10 @@ public class Main {
         boolean picked = false;
         do {
             try {
-                typePrint("Choose your hero:\n1) Omen\n2) Timzkie\n3) Jade\nChoice: ");
-                String input = sc.nextLine().trim();
-                int choice = Integer.parseInt(input);   
+                typePrint("Choose your hero:\n1) Omen\n2) Timzkie\n3) Jade");
+                System.out.print("Choice: ");
+                int choice = sc.nextInt();
+                sc.nextLine();
                 switch (choice) {
                     case 1: player = new Omen(); picked = true; break;
                     case 2: player = new Timzkie(); picked = true; break;
@@ -27,9 +28,8 @@ public class Main {
                     player.showSkills();
                     boolean confirmed = false;
                     while (!confirmed) {
-                        typePrint("Continue with this hero? (Y/N): ");
+                        System.out.print("Continue with this hero? (Y/N): ");
                         String confirm = sc.nextLine().trim().toUpperCase();
-
                         if (confirm.equals("Y")) {
                             picked = true;
                             confirmed = true;
