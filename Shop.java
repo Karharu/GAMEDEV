@@ -16,8 +16,8 @@ public class Shop {
             System.out.println("1) RUSTBORN FANG (50 gold)");
             System.out.println("2) CONQUEROR'S BLADE (100 gold)");
             System.out.println("3) KINGSBANE REAVER (200 gold)");
-            System.out.println("4) Mana Potion (+20 mana) (15 gold)");
-            System.out.println("5) Health Potion (+20 HP) (15 gold)");
+            System.out.println("4) Mana Potion (15 gold)");
+            System.out.println("5) Health Potion (15 gold)");
             System.out.println("6) Exit Shop");
             System.out.print("Buy choice: ");
 
