@@ -15,7 +15,7 @@ public class Game {
         // INTRO SA ATONG STORY
         storyPrint("-------------------------------");
         storyPrint("In the shadowed alleys of Gildenhall, a hooded figure approaches.");
-        storyPrint("\"The King’s demise shall bring coin and fame,\" he whispers.");
+        storyPrint("\"The King's demise shall bring coin and fame,\" he whispers.");
         storyPrint("\"Will you strike the Crown or turn away?\"");
 
         int choice = -1;
