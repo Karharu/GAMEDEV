@@ -8,7 +8,7 @@ public class Shop {
             System.out.println("╔════════════════════════════════════════════╗");
             System.out.println("║             THE TRAVELER'S TENT            ║");
             System.out.println("╠════════════════════════════════════════════╣");
-            System.out.println("║ You have: " + p.getCurrency() + "G                              ║");
+            System.out.println("║ You have: " + p.getCurrency() + "G                            ║");
             System.out.println("╚════════════════════════════════════════════╝");
             System.out.println();
             System.out.println("Items for Sale:");
