@@ -144,18 +144,27 @@ public class Game {
             System.out.println("╔════════════════════════════════════════════╗");
             System.out.printf("║               HERO: %-20s   ║\n", player.getName());
             System.out.println("╠════════════════════════════════════════════╣");
-            System.out.printf("║ HP:   %-35s       ║\n", 
-                ui.getHealthBar(player.getHp(), player.getMaxHp(), 20));
-            System.out.printf("║ Mana: %-35s         ║\n", 
-                ui.getManaBar(player.getMana(), player.getMaxMana(), 20));
-            System.out.printf("║ Gold: %-35d  ║\n", player.getCurrency());
+
+            String hpBar = ui.getHealthBar(player.getHp(), player.getMaxHp(), 20);
+            int hpPadding = 37 - ui.getVisibleLength(hpBar);
+            System.out.println("║ HP:   " + hpBar + " ".repeat(Math.max(0, hpPadding)) + "║");
+
+            String manaBar = ui.getManaBar(player.getMana(), player.getMaxMana(), 20);
+            int manaPadding = 37 - ui.getVisibleLength(manaBar);
+            System.out.println("║ Mana: " + manaBar + " ".repeat(Math.max(0, manaPadding)) + "║");
+
+            System.out.printf("║ Gold: %-37d║\n", player.getCurrency());
             System.out.println("╚════════════════════════════════════════════╝");
             System.out.println();
+
             System.out.println("╔════════════════════════════════════════════╗");
             System.out.println("║                   ENEMY                    ║");
             System.out.println("╠════════════════════════════════════════════╣");
-            System.out.printf("║ HP:   %-35s         ║\n", 
-                ui.getHealthBar(enemyHp, enemy.getMaxHp(), 20), enemyHp);
+
+            String enemyHpBar = ui.getHealthBar(enemyHp, enemy.getMaxHp(), 20);
+            int enemyPadding = 37 - ui.getVisibleLength(enemyHpBar);
+            System.out.println("║ HP:   " + enemyHpBar + " ".repeat(Math.max(0, enemyPadding)) + "║");
+
             System.out.println("╚════════════════════════════════════════════╝");
 
             System.out.println();
@@ -187,7 +196,7 @@ public class Game {
                     else { storyPrint("Not enough mana!"); continue; }
                     break;
                 case 4:
-                    boolean run = rand.nextInt(100)<40;
+                    boolean run = rand.nextInt(100)<30;
                     if(run) { storyPrint("You slip away successfully!"); storyPrint(randomTravelMessage()); return true; }
                     else { storyPrint("Failed to run!"); }
                     break;

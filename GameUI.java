@@ -111,6 +111,12 @@ public class GameUI {
             UIConstants.RESET);
     }
     
+    
+    public int getVisibleLength(String str) {
+        
+        return str.replaceAll("\u001B\\[[;\\d]*m", "").length();
+    }
+
     public String getHealthBar(int current, int max, int length) {
         int filled = max > 0 ? (int) ((current / (double) max) * length) : 0;
         filled = Math.max(0, Math.min(length, filled));
@@ -124,14 +130,13 @@ public class GameUI {
             color = UIConstants.RED;
         }
         
-        return color + "[" + "█".repeat(filled) + "░".repeat(length - filled) + "] " + current + "/" + max + UIConstants.RESET;
-
+        return color + "█".repeat(filled) + UIConstants.RESET + "░".repeat(length - filled) + UIConstants.RESET + " " + current + "/" + max;
     }
-    
+
     public String getManaBar(int current, int max, int length) {
         int filled = max > 0 ? (int) ((current / (double) max) * length) : 0;
         filled = Math.max(0, Math.min(length, filled));
-        return UIConstants.BLUE + "[" + "█".repeat(filled) + "░".repeat(length - filled) + "] " + current + "/" + max + UIConstants.RESET;
+        return UIConstants.BLUE + "█".repeat(filled) + UIConstants.RESET + "░".repeat(length - filled) + UIConstants.RESET + " " + current + "/" + max;
     }
     
     // ==================== BATTLE DISPLAY ====================
