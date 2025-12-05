@@ -49,7 +49,7 @@ public class Game {
         while((player.getWeaponDamage()<=5 || totalFights<18) && !player.isDead()) {
             storyPrint("-------------------------------");
             Enemy enemy;
-            boolean isBoss = rand.nextInt(100)<10;
+            boolean isBoss = rand.nextInt(100)<15;
             if(isBoss) { 
                 enemy = createBoss(); 
                 storyPrint(enemy.getName());
@@ -210,7 +210,7 @@ public class Game {
 
   
     private Enemy createEnemy() {
-        int hp = rand.nextInt(21)+30;
+        int hp = rand.nextInt(9) + 27;
         String[] encounters = {
             "A goblin skulks in the shadows.",
             "Bandits emerge from the trees.",
@@ -227,11 +227,11 @@ public class Game {
             "A hungry hyena pack snarls at the edge of the clearing.",
             "A shadowy figure darts between the trees."
         };
-        return new Enemy(encounters[rand.nextInt(encounters.length)],hp,7,12,10,15,false); 
+        return new Enemy(encounters[rand.nextInt(encounters.length)],hp,7,11,12,16,false); 
     }
 
     private Enemy createBoss() {
-        int hp = rand.nextInt(26) + 65; 
+        int hp = rand.nextInt(13) + 55;
         String[] bosses = {
             "BOSS ENCOUNTERED: A hulking bandit captain named Tamago snarls.",
             "BOSS APPEARED: A forest troll known as Llanos stomps into the clearing.",
@@ -239,7 +239,7 @@ public class Game {
             "BOSS APPEARED: A massive direwolf with immense aura bars your path.",
             "BOSS ENCOUNTERED: A necromancer raises skeletons from the soil."
         };
-        return new Enemy(bosses[rand.nextInt(bosses.length)], hp, 15, 20, 30, 50, true); 
+        return new Enemy(bosses[rand.nextInt(bosses.length)], hp, 12, 16, 30, 50, true); 
     }
 
     private String getBossDialogue(String bossName) {
