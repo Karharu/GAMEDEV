@@ -95,7 +95,7 @@ public class Game {
 
     public boolean assaultCastle() {
         storyPrint("-------------------------------");
-        storyPrint("At last, the towering gates of the King’s castle loom. Torches flicker along stone walls.");
+        storyPrint("At last, the towering gates of the King's castle loom. Torches flicker along stone walls.");
         for(int i=1;i<=3;i++) {
             Enemy knight = new Enemy("A Royal Knight charges!", 60, 8, 14, 20,30,false);
             if(i == 1) {
@@ -110,7 +110,7 @@ public class Game {
 
         storyPrint("\nThe King awaits atop the dais. His eyes cold, his armor shining.");
         Enemy king = new Enemy("The King stands before you.",1,15,25,150,200,true);
-        boolean kingDefeated = fightEnemy(king);
+        boolean kingDefeated = fightKing(king);
         if(!kingDefeated) return false;
 
         storyPrint("\nThe King collapses silently.");
@@ -200,7 +200,7 @@ public class Game {
                     if(run) { storyPrint("You slip away successfully!"); storyPrint(randomTravelMessage()); return true; }
                     else { storyPrint("Failed to run!"); }
                     break;
-                default: storyPrint("Hesitation wastes time!"); break;
+                default: storyPrint("Hesitation wastes time!"); sc.nextLine();
             }
 
             if(enemyHp<=0) break;
@@ -214,6 +214,75 @@ public class Game {
         int gold = enemy.getReward(rand);
         player.addGold(gold);
         storyPrint("Victory! Gained "+gold+" gold.");
+        return true;
+    }
+
+    private boolean fightKing(Enemy enemy) {
+        int enemyHp = enemy.getHp();
+        while(enemyHp>0) {
+            System.out.println("╔════════════════════════════════════════════╗");
+            System.out.printf("║               HERO: %-20s   ║\n", player.getName());
+            System.out.println("╠════════════════════════════════════════════╣");
+
+            String hpBar = ui.getHealthBar(player.getHp(), player.getMaxHp(), 20);
+            int hpPadding = 37 - ui.getVisibleLength(hpBar);
+            System.out.println("║ HP:   " + hpBar + " ".repeat(Math.max(0, hpPadding)) + "║");
+
+            String manaBar = ui.getManaBar(player.getMana(), player.getMaxMana(), 20);
+            int manaPadding = 37 - ui.getVisibleLength(manaBar);
+            System.out.println("║ Mana: " + manaBar + " ".repeat(Math.max(0, manaPadding)) + "║");
+
+            System.out.printf("║ Gold: %-37d║\n", player.getCurrency());
+            System.out.println("╚════════════════════════════════════════════╝");
+            System.out.println();
+
+            System.out.println("╔════════════════════════════════════════════╗");
+            System.out.println("║                    KING                    ║");
+            System.out.println("╠════════════════════════════════════════════╣");
+
+            String enemyHpBar = ui.getHealthBar(enemyHp, enemy.getMaxHp(), 20);
+            int enemyPadding = 37 - ui.getVisibleLength(enemyHpBar);
+            System.out.println("║ HP:   " + enemyHpBar + " ".repeat(Math.max(0, enemyPadding)) + "║");
+
+            System.out.println("╚════════════════════════════════════════════╝");
+
+            System.out.println();
+            System.out.println(" Available Actions:");
+            System.out.println("──────────────────────────────────────────────");
+            System.out.println("0) Normal Attack (0 mana)");
+            player.showSkills();
+            System.out.println();
+            System.out.print("Choice: ");
+            int action = safeRead();
+            switch(action) {
+                case 0:
+                    int baseDmg = rand.nextInt(4) + 5; 
+                    int dmg = player.generateDamage(baseDmg);
+                    enemyHp-=dmg;
+                    storyPrint("You strike and deal "+dmg+" damage!");
+                    break;
+                case 1:
+                    if(player.spendMana(10)) { dmg=player.generateDamage(20); enemyHp-=dmg; storyPrint("Skill 1 hits for "+dmg+" damage!"); }
+                    else { storyPrint("Not enough mana!"); continue; }
+                    break;
+                case 2:
+                    if(player.spendMana(20)) { dmg=player.generateDamage(30); enemyHp-=dmg; storyPrint("Skill 2 hits for "+dmg+" damage!"); }
+                    else { storyPrint("Not enough mana!"); continue; }
+                    break;
+                case 3:
+                    if(player.spendMana(30)) { dmg=player.generateDamage(45); enemyHp-=dmg; storyPrint("Skill 3 hits for "+dmg+" damage!"); }
+                    else { storyPrint("Not enough mana!"); continue; }
+                    break;
+                default: storyPrint("Hesitation wastes time!"); sc.nextLine();
+            }
+
+            if(enemyHp<=0) break;
+            int edmg = enemy.dealDamage(rand);
+            player.takeDamage(edmg);
+            storyPrint("Enemy strikes for "+edmg+" damage!");
+            try { Thread.sleep(rand.nextInt(2000) + 1000); } catch (InterruptedException e) {} 
+            if(player.isDead()) { storyPrint("You fall in battle. GAME OVER."); return false; }
+        }
         return true;
     }
 
