@@ -45,7 +45,13 @@ public class Shop {
                 System.out.print("Buy another item? 1=Yes 2=No: ");
                 int more = safeIntRead(sc);
                 if(more != 1){
-                    System.out.println("Exiting shop...");
+                    if(more == 2){
+                        System.out.println("Exiting shop...");
+                        shopping = false;
+                        break;
+                    }
+                    System.out.println("Invalid input.");
+                    System.out.println("The traveller moves on! You miss the chance to trade.");
                     shopping = false;
                 }
             }

@@ -67,7 +67,7 @@ public class Main {
     public static void typePrint(String text) {
         for (char c : text.toCharArray()) {
             System.out.print(c);
-            try { Thread.sleep(65); } catch (InterruptedException e) { } // Speed sa typing effect sa game
+            try { Thread.sleep(60); } catch (InterruptedException e) { } // Speed sa typing effect sa game
         }
         System.out.println();
     }
