@@ -34,7 +34,7 @@ public class Game {
             choice = safeRead();
         } while (choice !=1 && choice !=2);
 
-        if(choice==2) { storyPrint("You choose the quiet path. The shadows fade. GAME OVER."); return false; }
+        if(choice==2) { storyPrint("You choose the quiet path. The shadows fade."); ui.displayGameOver(); return false; }
 
         storyPrint("You accept. Your dagger gleams under the moonlight.");
         storyPrint("'I have to do this... for them.. ");
@@ -208,7 +208,7 @@ public class Game {
             player.takeDamage(edmg);
             storyPrint("Enemy strikes for "+edmg+" damage!");
             try { Thread.sleep(rand.nextInt(2000) + 1000); } catch (InterruptedException e) {} 
-            if(player.isDead()) { storyPrint("You fall in battle. GAME OVER."); return false; }
+            if(player.isDead()) { storyPrint("You fall in battle."); ui.displayGameOver(); return false; }
         }
 
         int gold = enemy.getReward(rand);
@@ -281,7 +281,7 @@ public class Game {
             player.takeDamage(edmg);
             storyPrint("Enemy strikes for "+edmg+" damage!");
             try { Thread.sleep(rand.nextInt(2000) + 1000); } catch (InterruptedException e) {} 
-            if(player.isDead()) { storyPrint("You fall in battle. GAME OVER."); return false; }
+            if(player.isDead()) { storyPrint("You fall in battle."); ui.displayGameOver(); return false; }
         }
         return true;
     }
